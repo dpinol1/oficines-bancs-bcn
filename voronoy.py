@@ -18,7 +18,7 @@ df = carregar_dades()
 #convertim les columnes de Longitud i Latitud a float i Codi_Districte a int i assignim 0 si Codi_Districte és buit
 df["Longitud"] = df["Longitud"].astype(float)
 df["Latitud"] = df["Latitud"].astype(float)
-df["Codi_Districte"] = df["Codi_Districte"].astype(int)
+df["Codi_Districte"] = df["Codi_Districte"].astype(float)
 df["Codi_Districte"] = df["Codi_Districte"].fillna(0)
 
 # 📌 2. Generar colors únics per cada Codi_Districte
@@ -28,7 +28,6 @@ colors = plt.cm.get_cmap("tab20b", len(districtes))
 #on codi és la clau entera i colors(i) és el valor i 50% de transparència
 color_map = {codi: f"rgba{colors(i, 0.5)}" for i, codi in enumerate(districtes)}
 color_map[0] = "rgba(255, 255, 0, 1)"  # Color per defecte
-st.write(districtes)
 
 
 # 📌 3. Generar diagrama de Voronoi
