@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 @st.cache_data
 def carregar_dades():
     df = pd.read_csv("Oficines_minim.csv")  # Assegura't que el fitxer és accessible
+    df["Longitud"] = df["Longitud"].astype(float)
+    df["Latitud"] = df["Latitud"].astype(float)
     df["Codi_Districte"] = df["Codi_Districte"].fillna(0)
     return df
 
@@ -16,7 +18,7 @@ df = carregar_dades()
 #convertim les columnes de Longitud i Latitud a float i Codi_Districte a int i assignim 0 si Codi_Districte és buit
 df["Longitud"] = df["Longitud"].astype(float)
 df["Latitud"] = df["Latitud"].astype(float)
-#df["Codi_Districte"] = df["Codi_Districte"].astype(int)
+df["Codi_Districte"] = df["Codi_Districte"].astype(int)
 df["Codi_Districte"] = df["Codi_Districte"].fillna(0)
 
 # 📌 2. Generar colors únics per cada Codi_Districte
