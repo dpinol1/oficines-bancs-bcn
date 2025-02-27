@@ -46,26 +46,6 @@ def voronoi_regions(vor, df):
 
 regions = voronoi_regions(vor, df)
 
-#converteix les regions en un kmz
-import simplekml
-kml = simplekml.Kml()
-for region in regions:
-    pol = kml.newpolygon(name=f"Districte {region['codi_districte']}")
-    pol.outerboundaryis = region["coords"].tolist()
-kml.save("voronoi.kmz") 
-
-#converteix els punts df["Codi_Districte"]=0 en un kmz
-kml = simplekml.Kml()
-for i, row in df[df["Codi_Districte"]==0].iterrows():
-    pnt = kml.newpoint(name=f"Oficina {i}", coords=[(row["Longitud"], row["Latitud"])])
-kml.save("punts0.kmz")
-
-#converteix els punts df["Codi_Districte"]>0 en un kmz
-kml = simplekml.Kml()
-for i, row in df[df["Codi_Districte"]>0].iterrows():
-    pnt = kml.newpoint(name=f"Oficina {i}", coords=[(row["Longitud"], row["Latitud"])])
-kml.save("punts.kmz")
-
 
 # 📌 5. Crear la interfície de Streamlit
 st.title("Mapa de Voronoi d'Oficines per Districte")
